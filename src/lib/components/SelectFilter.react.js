@@ -180,7 +180,14 @@ class SelectFilter extends Component {
     }
 
     componentWillMount() {
-        this.updateSelectedDatePicker( this.state.defaultDateRangeType );		
+        this.updateSelectedDatePicker( this.state.defaultDateRangeType );
+		var data = Utils.getDateForDatePicker(this.state.defaultDateRangeType);
+        var finalDateData = {
+            fromDate: data.startDate,
+            toDate: data.endDate
+        }
+		this.props.setProps({ value: finalDateData });	
+		
     }
 
     handleSave = () => {
@@ -201,11 +208,11 @@ class SelectFilter extends Component {
             startDate: data.startDate,
             endDate: data.endDate
         });
-		var finalDateData = {
+		/*var finalDateData = {
             fromDate: data.startDate,
             toDate: data.endDate
         }
-		this.props.setProps({ value: finalDateData });
+		this.props.setProps({ value: finalDateData });*/
     
     }
 
