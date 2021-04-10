@@ -183,7 +183,11 @@ function getDateForDatePicker(data) {
             lastDate.setDate(1); // going to 1st of the month
             var currentMonth = lastDate;
             lastDate.setHours(-1);
+            var lastmonth=lastDate.getMonth()+1
 
+			if (lastmonth < 10) {
+                lastmonth = '0' + lastmonth;
+            }
             // return {
             //     start: monthNames[parseInt(fmonth)] + ' ' + fdate + ' ',
             //     end: ' ' + monthNames[parseInt(lmonth)] + ' ' + ldate,
@@ -193,8 +197,8 @@ function getDateForDatePicker(data) {
             return {
                 start: monthNames[parseInt(lastDate.getMonth()+1)] + ' 01' ,
                 end: ' ' + monthNames[parseInt(lastDate.getMonth()+1)] + ' ' + lastDate.getDate(),
-                startDate :  currentMonth.getFullYear() + '-' + (lastDate.getMonth()+1) + '-01' ,
-                endDate :  lastDate.getFullYear()  + '-' + (lastDate.getMonth()+1) + '-' + (lastDate.getDate())
+                startDate :  currentMonth.getFullYear() + '-' + (lastmonth) + '-01' ,
+                endDate :  lastDate.getFullYear()  + '-' + (lastmonth) + '-' + (lastDate.getDate())
             }
 
         case 'max':

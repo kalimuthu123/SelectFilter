@@ -111,7 +111,7 @@ const dateFilterType = [
     {
         type: 'prev month',
         text: 'Last Month',
-        displayValue: ''
+       displayValue: ''
     },
     {
         type: 'custom',
@@ -244,6 +244,7 @@ class SelectFilter extends Component {
         }
 
         //this.props.emitDateData(finalDateData);
+		console.log("Selected Date Range",finalDateData)
 		this.props.setProps({ value: finalDateData });
         this.handleClose();
     }
