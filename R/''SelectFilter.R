@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-''SelectFilter <- function(id=NULL, label=NULL, value=NULL, classes=NULL) {
+''SelectFilter <- function(id=NULL, label=NULL, value=NULL, startDate=NULL, type=NULL, endDate=NULL, classes=NULL) {
     
-    props <- list(id=id, label=label, value=value, classes=classes)
+    props <- list(id=id, label=label, value=value, startDate=startDate, type=type, endDate=endDate, classes=classes)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@
         props = props,
         type = 'SelectFilter',
         namespace = 'select_filter',
-        propNames = c('id', 'label', 'value', 'classes'),
+        propNames = c('id', 'label', 'value', 'startDate', 'type', 'endDate', 'classes'),
         package = 'selectFilter'
         )
 

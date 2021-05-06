@@ -94,12 +94,33 @@
         "required": false,
         "description": "The value displayed in the input."
       },
+      "startDate": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "The startDate displayed in the input."
+      },
+      "type": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "The type of dateformat in the input."
+      },
+      "endDate": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "The endDate displayed in the input."
+      },
       "classes": {
         "type": {
           "name": "object"
         },
         "required": false,
-        "description": ""
+        "description": "The classes displayed in the component."
       },
       "setProps": {
         "type": {

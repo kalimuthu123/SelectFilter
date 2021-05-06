@@ -180,13 +180,33 @@ class SelectFilter extends Component {
     }
 
     componentWillMount() {
-        this.updateSelectedDatePicker( this.state.defaultDateRangeType );
-		var data = Utils.getDateForDatePicker(this.state.defaultDateRangeType);
-        var finalDateData = {
-            fromDate: data.startDate,
-            toDate: data.endDate
+		if (this.props.type === 'custom') {
+			var dateData = {
+               startDate: this.props.startDate,
+               endDate: this.props.endDate
+            }
+            var data = Utils.formatcustomStartDateAndEndDate(dateData);//for custom date
+            this.setState({
+                 start: data.start,
+                 end: data.end,
+                 startDate: data.startDate,
+                 endDate: data.endDate
+            });
+			var finalDateData = {
+                fromDate: data.startDate,
+                toDate: data.endDate
+            }
+		    this.props.setProps({ value: finalDateData });	
         }
-		this.props.setProps({ value: finalDateData });	
+		else {
+            this.updateSelectedDatePicker( this.state.defaultDateRangeType );
+		    var data = Utils.getDateForDatePicker(this.state.defaultDateRangeType);
+            var finalDateData = {
+                fromDate: data.startDate,
+                toDate: data.endDate
+            }
+		    this.props.setProps({ value: finalDateData });	
+		}
 		
     }
 
@@ -367,6 +387,24 @@ SelectFilter.propTypes = {
      */
     value: PropTypes.any,
 	
+	/**
+     * The startDate displayed in the input.
+     */
+    startDate: PropTypes.any,
+	
+	/**
+     * The type of dateformat in the input.
+     */
+    type: PropTypes.any,
+	
+	/**
+     * The endDate displayed in the input.
+    */
+    endDate: PropTypes.any,
+	
+	/**
+     * The classes displayed in the component.
+    */
     classes: PropTypes.object,
 
     /**

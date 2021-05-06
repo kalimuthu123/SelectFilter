@@ -215,6 +215,7 @@ function getDateForDatePicker(data) {
                 month = '0' + month;
             }
             return  year + '-' + month + '-' + (date + 1) ;
+			
         default:
             return {
                 start: "All",
@@ -256,11 +257,53 @@ function formatStartDateAndEndDate(data) {
     }
 }
 
+function formatcustomStartDateAndEndDate(data) {
+	var startDate_part =data.startDate.split('-');
+	var endDate_part =data.endDate.split('-');
+	var startDate = new Date(startDate_part[0], startDate_part[1] - 1, startDate_part[2]);
+	var endDate = new Date(endDate_part[0], endDate_part[1] - 1, endDate_part[2]);
+    //var endDate = new Date(Date.parse(data.endDate));
+	
+    var sdate = startDate.getDate();
+    var smonth = startDate.getMonth() + 1;
+    var syear = startDate.getFullYear();
+	
+	console.log("sdate",sdate)
+	console.log("sdate",smonth)
+    if (sdate < 10) {
+        sdate = '0' + sdate;
+    }
+    if (smonth < 10) {
+        smonth = '0' + smonth;
+    }
+
+    var edate = endDate.getDate();
+    var emonth = endDate.getMonth() + 1;
+    var eyear = endDate.getFullYear();
+    if (edate < 10) {
+        edate = '0' + edate;
+    }
+    if (emonth < 10) {
+        emonth = '0' + emonth;
+    }
+	
+	console.log("data.startDate",data.startDate)
+	console.log("startDate",startDate)
+	console.log("endDate",endDate)
+	
+    return {
+        start: monthNames[parseInt(smonth, 10)] + ' ' + sdate,
+        end: monthNames[parseInt(emonth, 10)] + ' ' + edate,
+        startDate:  syear + '-' + smonth + '-' + (sdate) ,
+        endDate:  eyear + '-' + emonth + '-' + (edate) 
+    }
+}
 
 const Utils = {
     getDateForDatePicker,
     formatStartDateAndEndDate,
     formateDate,
+	formatcustomStartDateAndEndDate,
     getCurrentTime
 }
 
