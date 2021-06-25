@@ -1,32 +1,30 @@
 {
   "src/lib/components/CardDropdown.react.js": {
     "description": "ExampleComponent is an example component.\r\nIt takes a property, `label`, and\r\ndisplays it.\r\nIt renders an input with the property `value`\r\nwhich is editable by the user.",
-    "displayName": "SelectFilter",
+    "displayName": "CardDropdown",
     "methods": [
       {
-        "name": "applyChange",
-        "docblock": null,
-        "modifiers": [],
-        "params": [],
-        "returns": null
-      },
-      {
-        "name": "handleClick",
+        "name": "toggleDropdown",
         "docblock": null,
         "modifiers": [],
         "params": [
           {
-            "name": "event",
+            "name": "e",
             "type": null
           }
         ],
         "returns": null
       },
       {
-        "name": "handleClose",
+        "name": "renderDropdownMenu",
         "docblock": null,
         "modifiers": [],
-        "params": [],
+        "params": [
+          {
+            "name": "childrenlayout",
+            "type": null
+          }
+        ],
         "returns": null
       }
     ],
@@ -58,27 +56,6 @@
         },
         "required": false,
         "description": "The value displayed in the input."
-      },
-      "startDate": {
-        "type": {
-          "name": "any"
-        },
-        "required": false,
-        "description": "The startDate displayed in the input."
-      },
-      "type": {
-        "type": {
-          "name": "any"
-        },
-        "required": false,
-        "description": "The type of dateformat in the input."
-      },
-      "endDate": {
-        "type": {
-          "name": "any"
-        },
-        "required": false,
-        "description": "The endDate displayed in the input."
       },
       "classes": {
         "type": {
@@ -157,10 +134,15 @@
     "displayName": "RadioFilter",
     "methods": [
       {
-        "name": "toggleExpanded",
+        "name": "toggleDropdown",
         "docblock": null,
         "modifiers": [],
-        "params": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          }
+        ],
         "returns": null
       },
       {
@@ -169,7 +151,7 @@
         "modifiers": [],
         "params": [
           {
-            "name": "event",
+            "name": "e",
             "type": null
           }
         ],
@@ -182,6 +164,18 @@
         "params": [
           {
             "name": "e",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "renderDropdownMenu",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "initialarray",
             "type": null
           }
         ],

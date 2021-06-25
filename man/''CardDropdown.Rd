@@ -10,8 +10,7 @@ ExampleComponent is an example component. It takes a property, `label`, and di
 }
 
 \usage{
-''CardDropdown(children=NULL, id=NULL, label=NULL, value=NULL,
-startDate=NULL, type=NULL, endDate=NULL, classes=NULL)
+''CardDropdown(children=NULL, id=NULL, label=NULL, value=NULL, classes=NULL)
 }
 
 \arguments{
@@ -22,12 +21,6 @@ startDate=NULL, type=NULL, endDate=NULL, classes=NULL)
 \item{label}{Character. A label that will be printed when this component is rendered.}
 
 \item{value}{Logical | numeric | character | named list | unnamed list. The value displayed in the input.}
-
-\item{startDate}{Logical | numeric | character | named list | unnamed list. The startDate displayed in the input.}
-
-\item{type}{Logical | numeric | character | named list | unnamed list. The type of dateformat in the input.}
-
-\item{endDate}{Logical | numeric | character | named list | unnamed list. The endDate displayed in the input.}
 
 \item{classes}{Named list. The classes displayed in the component.}
 }

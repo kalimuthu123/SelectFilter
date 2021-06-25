@@ -1,110 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Grid from "@material-ui/core/Grid";
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import { Icon } from "@material-ui/core";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import { DateRange } from 'react-date-range';
-import Utils from "./util.js";
-import withStyles from "@material-ui/core/styles/withStyles";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-
-
-const styles = theme => ({
-    icon: {
-        margin: 0,
-        fontSize: 22,
-        marginRight: 0,
-        borderRadius: '50%',
-        padding: 3
-    },
-    applyButton: {
-        borderRadius: '2em',
-        height: 34,
-        margin: '0px 10px',
-        backgroundColor: '#00acc1',
-        color: 'white',
-        border: '1px solid #00acc1',
-        justifyContent: 'center',
-        minHeight: 34,
-        minWidth: 100,
-        boxShadow: 'none',
-        "&:hover,&:focus": {
-            color: "#00acc1",
-            backgroundColor: 'white',
-            border: '1px solid #00acc1',
-            boxShadow:
-                "none"
-        }
-    },
-    button: {
-        borderRadius: '2em',
-        height: 34,
-        margin: '0px 10px',
-        backgroundColor: 'white',
-        color: '#373737',
-
-        ustifyContent: 'center',
-        minHeight: 34,
-        minWidth: 110,
-        boxShadow: 'none',
-        "&:hover,&:focus": {
-            color: "black",
-
-            backgroundColor: 'white',
-            boxShadow:
-                "none"
-        }
-    },
-    dateButton: {
-        borderRadius: '2em',
-        height: 40,
-        margin: '0px 10px',
-        backgroundColor: 'white',
-        color: '#373737',
-        // boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
-        ustifyContent: 'center',
-        minHeight: 40,
-        minWidth: 110,
-        boxShadow: 'none',
-        "&:hover,&:focus": {
-            color: "black",
-             boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
-            backgroundColor: 'white',
-            // boxShadow:"none"
-        }
-    }
-});
-
-
-const StyledButton = withStyles({
-    root: {
-        borderRadius: '2em',
-        height: 40,
-        margin: '0px 10px',
-        backgroundColor: 'white',
-        color: 'black',
-        ustifyContent: 'center',
-        minHeight: 40,
-        minWidth: 110,
-        boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
-        "&:hover,&:focus": {
-            color: "black",
-            backgroundColor: 'white',
-            boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
-        }
-    },
-    label: {
-        textTransform: 'capitalize',
-        width: '100% !important',
-        padding: '0px 0px 0px 10px'
-    },
-})(Button);
+import './RadioFilter.css'
 
 /**
  * ExampleComponent is an example component.
@@ -113,111 +9,57 @@ const StyledButton = withStyles({
  * It renders an input with the property `value`
  * which is editable by the user.
  */
+// DropdownPage.js
 
-class SelectFilter extends Component {
-	
-	constructor(props) {
-        super(props);
-        this.state = {
-			
-        }
+
+class CardDropdown extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      dropdownVisible: false
     }
+  }
 
-    componentWillMount() {
-		
-    }
-	
-	applyChange() {
-        var finalDateData = {
-            fromDate: this.state.startDate,
-            toDate: this.state.endDate
-        }
+  toggleDropdown = (e) => {
+    this.setState(prevState => ({dropdownVisible: !prevState.dropdownVisible}))
+  }
 
-        //this.props.emitDateData(finalDateData);
-		console.log("Selected Date Range",finalDateData)
-		this.props.setProps({ value: finalDateData });
-        this.handleClose();
-    }
+  renderDropdownMenu(childrenlayout) {
+    return (
+      <div className='dropdown-body'>
+        <div>
+         {childrenlayout.map((child, index) => (<div key={index}>{child}</div>))}
+        </div>
+      </div>
+    )
+  }
 
-    handleClick = event => {
-        this.setState({ anchorEl: event.currentTarget });
-    };
-
-    handleClose = () => {
-        this.setState({ anchorEl: null });
-    };
-
-
-    render() {
-        const {id, label, setProps, value ,classes,children } = this.props;
+  render() {
+	  const {id, label, setProps, value ,classes,children } = this.props;
 		console.log("children",children)
         let childrenlayout = Array.isArray(children) ? children : [children];
 		console.log("childrenlayout", childrenlayout)
-        return (
-            <div style={{ width: "100%"}}>
-                <Grid container direction="row" alignItems="stretch">
-                    <Grid item xs={12} sm={12} md={8}>
-                        <p style={{ margin: 5, float: 'left', fontSize: '2em', color: '#373737', 
-                        fontFamily: "'Montserrat', sans-serif" }}>{this.state.titleText}</p>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4}>
-                        <div style={{ float: 'right' }}>
-                            <StyledButton aria-owns={this.state.anchorEl ? 'long-menu' : null} aria-haspopup="true" aria-label="More" onClick={this.handleClick} variant="contained" className={classes.dateButton} style={{ width: 180, padding: '0 5px', boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)' }}>
-                                <Grid container direction="row" alignItems="stretch" style={{ minWidth: 130, alignItems: 'center', fontFamily: "'Montserrat', sans-serif" }}>
-                                    <Grid item xs={9} sm={9} md={9} style={{ display: 'flex' }}>
-                                        <p style={{ textAlign: 'left', fontSize: 12, margin: 0, 
-                                        paddingRight: 5, fontFamily: "'Montserrat', sans-serif",
-                                         color: '#373737' }}>
-                                         { "Filters" } </p>
-                                    </Grid>
-                                    <Grid item xs={3} sm={3} md={3} style={{ textAlign: 'right', placeContent: 'center', alignItems: 'center', display: 'flex', fontFamily: "'Montserrat', sans-serif" }}>
-										<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                                           <MenuIcon />
-                                        </IconButton>
-                                    </Grid>
-                                </Grid>
-                            </StyledButton>
-                            <Menu
-                                id="long-menu"
-                                anchorEl={this.state.anchorEl}
-                                open={Boolean(this.state.anchorEl)}
-                                onClose={this.handleClose}
-                                PaperProps={{
-                                    style: {
-                                        maxHeight: '100%',
-                                        width: '60%'
-                                    },
-                                }}
-                            >
-                                <Grid container direction="row" alignItems="stretch" style={{
-                                    padding: '0px 15px'
-                                }}>
-								 {childrenlayout.map((child, index) => (<div key={index}>{child}</div>))}
-                                </Grid>
-                                <Grid container direction="row" justify="flex-end" alignItems="center">
-                                    <Grid item xs={12} sm={12} md={4} style={{ margin: 10 }}>
-                                        <Button variant="contained" className={classes.applyButton} onClick={this.applyChange.bind(this)}>
-                                            Apply
-                                    </Button>
-                                        <Button variant="contained" className={classes.button} onClick={this.handleClose}>
-                                            Cancel
-                                    </Button>
-                                    </Grid>
-                                </Grid>
-                            </Menu>
-                        </div>
-                    </Grid>
-                </Grid >
-            </div >
-        );
-    }
+    return (
+      <div className='dropdown-container'>
+        <div className='dropdown-trigger'>
+          <button onClick={this.toggleDropdown}>
+            dropdown trigger
+          </button>
+        </div>
+        {
+          this.state.dropdownVisible &&
+          this.renderDropdownMenu(childrenlayout)
+        }
+      </div>
+    )
+  }
 }
 
-export default withStyles(styles)(SelectFilter);
+export default CardDropdown;
 
-SelectFilter.defaultProps = {};
+CardDropdown.defaultProps = {};
 
-SelectFilter.propTypes = {
+CardDropdown.propTypes = {
     /**
      * The ID used to identify this component in Dash callbacks.
      */
@@ -238,20 +80,6 @@ SelectFilter.propTypes = {
      */
     value: PropTypes.any,
 	
-	/**
-     * The startDate displayed in the input.
-     */
-    startDate: PropTypes.any,
-	
-	/**
-     * The type of dateformat in the input.
-     */
-    type: PropTypes.any,
-	
-	/**
-     * The endDate displayed in the input.
-    */
-    endDate: PropTypes.any,
 	
 	/**
      * The classes displayed in the component.

@@ -9,7 +9,107 @@ import './RadioFilter.css'
  * which is editable by the user.
  */
 // https://codesandbox.io/s/checkboxbyplatform-ppmh4?file=/src/app.jsx
+// DropdownPage.js
+// https://baurine.netlify.app/2018/12/09/implement-react-drop-down/
 
+class RadioFilter extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      dropdownVisible: false,
+	  selections : [],
+    }
+  }
+
+  toggleDropdown = (e) => {
+    this.setState(prevState => ({dropdownVisible: !prevState.dropdownVisible}))
+  }
+  
+  handleChange = (e) => {
+   
+   // to find out if it's checked or not; returns true or false
+   let checked = e.target.checked;
+
+   // to get the checked value
+   let checkedValue = e.target.value;
+
+   // to get the checked name
+   let checkedName = e.target.name;
+
+   //then you can do with the value all you want to do with it.
+   //console.log(e)
+   //console.log(checked,checkedValue,checkedName)
+
+    if (checked) {
+		
+	   /*this.setState(prevState => ({
+            selections: [...prevState.selections, checkedName ]
+       })); */
+       let selections = [...this.state.selections];
+       selections.push(checkedName);
+	   console.log("tempArr",selections)
+       this.setState({selections});
+	    /*this.setState(prevState => ({
+            selections: prevState.selections.concat(new Array([checkedName]))
+        })); */
+	   //this.setState(prevState => ({selections: [...prevState.selections, checkedName ]}))
+	   console.log("checkedselect",this.state.selections)
+    }
+	console.log("filtered1",this.state.selections)
+    const filtered = this.state.selections.filter(name => name !== e.target.name);
+	console.log("filtered",filtered)
+	this.setState({ selections: filtered });
+};
+  
+  handleSubmit = e => {
+    e.preventDefault();
+	console.log(this.state.selections)
+	this.props.setProps({ value : this.state.selections });
+  }
+
+  renderDropdownMenu(initialarray) {
+    return (
+      <div className='dropdown-body'>
+	    <form onSubmit={this.handleSubmit} className="form-group">
+		{ initialarray.map ( data => (
+		                  <div className="form-check form-check-flat form-check-primary ml-3">
+						  <label className="form-check-label font-weight-bold" >
+                          <input
+                           type="checkbox"
+                           name={data}
+                           value={data}
+                           onChange={this.handleChange}
+                           className="m-3 cursor-pointer"
+                          />
+                          <span>{data} </span>
+						  </label>
+                          </div>
+                     ))}
+	    <button className="btn btn-dark btn-sm ml-3" type="submit">Submit</button>
+		</form>
+      </div>
+    )
+  }
+
+  render() {
+	  const {id, label, setProps, value ,classes,initialarray} = this.props;
+    return (
+      <div className='dropdown-container'>
+        <div className='dropdown-trigger'>
+          <button onClick={this.toggleDropdown}>
+            dropdown trigger
+          </button>
+        </div>
+        {
+          this.state.dropdownVisible &&
+          this.renderDropdownMenu(initialarray)
+        }
+      </div>
+    )
+  }
+}
+
+/*
 class RadioFilter extends Component {
 	
 	constructor(props) {
@@ -90,7 +190,7 @@ class RadioFilter extends Component {
             </div>
         );
     }
-}
+}*/
 
 export default RadioFilter;
 

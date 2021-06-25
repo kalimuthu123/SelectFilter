@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-''CardDropdown <- function(children=NULL, id=NULL, label=NULL, value=NULL, startDate=NULL, type=NULL, endDate=NULL, classes=NULL) {
+''CardDropdown <- function(children=NULL, id=NULL, label=NULL, value=NULL, classes=NULL) {
     
-    props <- list(children=children, id=id, label=label, value=value, startDate=startDate, type=type, endDate=endDate, classes=classes)
+    props <- list(children=children, id=id, label=label, value=value, classes=classes)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@
         props = props,
         type = 'CardDropdown',
         namespace = 'select_filter',
-        propNames = c('children', 'id', 'label', 'value', 'startDate', 'type', 'endDate', 'classes'),
+        propNames = c('children', 'id', 'label', 'value', 'classes'),
         package = 'selectFilter'
         )
 

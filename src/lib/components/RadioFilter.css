@@ -1,19 +1,22 @@
-.up-arrow:after {
-  display: inline-block;
-  content: " ";
-  margin-left: 4px;
-  margin-bottom: 4px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid black;
+// DropdownPage.css
+.dropdown-container {
+  /* must assign container position as relative */
+  position: relative;
+  width: 200px;
 }
 
-.down-arrow:after {
-  display: inline-block;
-  content: " ";
-  margin-left: 4px;
-  margin-bottom: 4px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid black;
+.dropdown-trigger {
+  padding: 10px 0px;
+}
+
+.dropdown-body {
+  position: absolute;
+  /*top: 100%;
+  width: 100%; */
+  padding: 10px;
+
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px #888888;
+
+  z-index: 2;
 }
