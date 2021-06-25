@@ -3,8 +3,9 @@ module SelectFilter
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "0.0.5"
+const version = "0.0.6"
 
+include("''_carddropdown.jl")
 include("''_datefilter.jl")
 include("''_radiofilter.jl")
 include("''_selectfilter.jl")

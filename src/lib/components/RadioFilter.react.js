@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
+import './RadioFilter.css'
 /**
  * ExampleComponent is an example component.
  * It takes a property, `label`, and
@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
  * It renders an input with the property `value`
  * which is editable by the user.
  */
+// https://codesandbox.io/s/checkboxbyplatform-ppmh4?file=/src/app.jsx
 
 class RadioFilter extends Component {
 	
@@ -17,6 +18,7 @@ class RadioFilter extends Component {
            selections :[ ],
 		   expanded : false
         }
+		this.handleChange = this.handleChange.bind(this);
     }
 
     componentWillMount() {
@@ -61,8 +63,8 @@ class RadioFilter extends Component {
                 <form onSubmit={this.handleSubmit} className="form-group">
                    <div>
                       <div onClick={this.toggleExpanded}>
-		                  <div className=" ">
-                             { "None selected"}
+		                  <div className={`font-semibold cursor-pointer ${this.state.expanded ? "up-arrow" : "down-arrow"}`}>
+                             { " show all trends "}
                            </div>
                       </div>
                       {this.state.expanded && (

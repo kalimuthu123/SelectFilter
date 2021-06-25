@@ -82,52 +82,6 @@ const styles = theme => ({
 });
 
 
-const dateFilterType = [
-    {
-        type: '0 day',
-        text: 'Today',
-        displayValue: ''
-    },
-    {
-        type: '1 day',
-        text: 'Yesterday',
-        displayValue: ''
-    },
-    {
-        type: '7 day',
-        text: 'Last 7 Days',
-        displayValue: ''
-    },
-    {
-        type: '30 day',
-        text: 'Last 30 Days',
-        displayValue: ''
-    },
-    {
-        type: '1 month',
-        text: 'This month',
-        displayValue: ''
-    },
-    {
-        type: 'prev month',
-        text: 'Last Month',
-       displayValue: ''
-    },
-    {
-        type: 'custom',
-        text: 'Custom Range',
-        displayValue: ''
-    }
-    // ,
-    // {
-    //     type: 'All',
-    //     text: 'All',
-    //     displayValue: ''
-    // }
-];
-
-
-
 const StyledButton = withStyles({
     root: {
         borderRadius: '2em',
@@ -165,100 +119,15 @@ class SelectFilter extends Component {
 	constructor(props) {
         super(props);
         this.state = {
-            anchorEl: null,
-            showCustom: false,
-            // dateSelectFilter: 'Today:',
-            startDate: Utils.getDateForDatePicker('current-start'),
-            endDate: Utils.getDateForDatePicker('current-end'),
-            maxDate: Utils.getDateForDatePicker('max'),
-            buttonText: 'Last 30 Days',
-            start: '',
-            end: '',
-            titleText : this.props.titleText,
-            defaultDateRangeType: this.props.defaultDateRangeType || "30 day"
+			
         }
     }
 
     componentWillMount() {
-		if (this.props.type === 'custom') {
-			var dateData = {
-               startDate: this.props.startDate,
-               endDate: this.props.endDate
-            }
-            var data = Utils.formatcustomStartDateAndEndDate(dateData);//for custom date
-            this.setState({
-                 start: data.start,
-                 end: data.end,
-                 startDate: data.startDate,
-                 endDate: data.endDate
-            });
-			var finalDateData = {
-                fromDate: data.startDate,
-                toDate: data.endDate
-            }
-			console.log("Selected Date Range",finalDateData)
-		    this.props.setProps({ value: finalDateData });	
-        }
-		else {
-            this.updateSelectedDatePicker( this.state.defaultDateRangeType );
-		    var data = Utils.getDateForDatePicker(this.state.defaultDateRangeType);
-            var finalDateData = {
-                fromDate: data.startDate,
-                toDate: data.endDate
-            }
-		    this.props.setProps({ value: finalDateData });	
-		}
 		
     }
-
-    handleSave = () => {
-        this.setState({ anchorEl: null });
-    }
-
-
-    updateSelectedDatePicker(type, text) {
-        this.setState({ buttonText: text });
-        if (type === 'custom') {
-            return;
-        }
-        var data = Utils.getDateForDatePicker(type);
-
-        this.setState({
-            start: data.start,
-            end: data.end,
-            startDate: data.startDate,
-            endDate: data.endDate
-        });
-		/*var finalDateData = {
-            fromDate: data.startDate,
-            toDate: data.endDate
-        }
-		this.props.setProps({ value: finalDateData });*/
-    
-    }
-
-    showCustomDatePicker = () => {
-        this.setState({
-            showCustom: true
-        })
-    }
-
-    handleSelect(range) {
-        var dateData = {
-            startDate: range.startDate._d,
-            endDate: range.endDate._d
-        }
-
-        var data = Utils.formatStartDateAndEndDate(dateData);//for custom date
-        this.setState({
-            start: data.start,
-            end: data.end,
-            startDate: data.startDate,
-            endDate: data.endDate
-        });
-    }
-
-    applyDateChange() {
+	
+	applyChange() {
         var finalDateData = {
             fromDate: this.state.startDate,
             toDate: this.state.endDate
@@ -277,10 +146,13 @@ class SelectFilter extends Component {
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
-	
+
+
     render() {
-        const {id, label, setProps, value ,classes } = this.props;
-        
+        const {id, label, setProps, value ,classes,children } = this.props;
+		console.log("children",children)
+        let childrenlayout = Array.isArray(children) ? children : [children];
+		console.log("childrenlayout", childrenlayout)
         return (
             <div style={{ width: "100%"}}>
                 <Grid container direction="row" alignItems="stretch">
@@ -296,11 +168,7 @@ class SelectFilter extends Component {
                                         <p style={{ textAlign: 'left', fontSize: 12, margin: 0, 
                                         paddingRight: 5, fontFamily: "'Montserrat', sans-serif",
                                          color: '#373737' }}>
-                                         {this.state.start}</p>
-                                        <p style={{ textAlign: 'left', fontSize: 12, margin: 0, 
-                                        fontFamily: "'Montserrat', sans-serif", 
-                                        color: '#36c2d8' }}>
-                                        - {this.state.end}</p>
+                                         { "Filters" } </p>
                                     </Grid>
                                     <Grid item xs={3} sm={3} md={3} style={{ textAlign: 'right', placeContent: 'center', alignItems: 'center', display: 'flex', fontFamily: "'Montserrat', sans-serif" }}>
 										<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
@@ -324,34 +192,11 @@ class SelectFilter extends Component {
                                 <Grid container direction="row" alignItems="stretch" style={{
                                     padding: '0px 15px'
                                 }}>
-                                    <Grid item xs={12} sm={12} md={9}>
-                                        < DateRange
-                                            style={{ display: 'flex' }}
-                                            startDate={this.state.startDate}
-                                            endDate={this.state.endDate}
-                                            format="YYYY-MM-DD"
-                                            maxDate={this.state.maxDate}
-                                            onChange={this.handleSelect.bind(this)}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={3}>
-                                        <List component="nav">
-                                            {dateFilterType.map((indValue, index) => (
-                                                <ListItem key={index} 
-                                                button 
-                                                style={{ padding: 10, backgroundColor: (this.state.buttonText === indValue.text) ? '#00acc1' : 'white' }} 
-                                                onClick={this.updateSelectedDatePicker.bind(this, indValue.type, indValue.text)}>
-                                                    <ListItemText disableTypography inset primary={indValue.text} 
-                                                    style={{ color: (this.state.buttonText === indValue.text) ? 'white' : '#373737', 
-                                                    paddingLeft: 0, fontSize: 13, fontWeight: 600 }} />
-                                                </ListItem>
-                                            ))}
-                                        </List>
-                                    </Grid>
+								 {childrenlayout.map((child, index) => (<div key={index}>{child}</div>))}
                                 </Grid>
                                 <Grid container direction="row" justify="flex-end" alignItems="center">
                                     <Grid item xs={12} sm={12} md={4} style={{ margin: 10 }}>
-                                        <Button variant="contained" className={classes.applyButton} onClick={this.applyDateChange.bind(this)}>
+                                        <Button variant="contained" className={classes.applyButton} onClick={this.applyChange.bind(this)}>
                                             Apply
                                     </Button>
                                         <Button variant="contained" className={classes.button} onClick={this.handleClose}>
@@ -382,6 +227,11 @@ SelectFilter.propTypes = {
      * A label that will be printed when this component is rendered.
      */
     label: PropTypes.string,
+	
+	/**
+     * The children components displayed inside the grid.
+     */
+    children : PropTypes.node,
 
     /**
      * The value displayed in the input.
