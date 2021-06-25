@@ -1,6 +1,6 @@
 {
   "name": "select_filter",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "the selected date filter",
   "main": "build/index.js",
   "scripts": {
@@ -16,7 +16,8 @@
   "author": "kalimuthu periyasamy <1995kalimuthu@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "react-bootstrap": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",

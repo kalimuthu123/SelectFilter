@@ -130,5 +130,67 @@
         "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
       }
     }
+  },
+  "src/lib/components/TimeGrainFilter.react.js": {
+    "description": "TimeGrainFilter is an example component.\r\nIt takes a property, `label`, and\r\ndisplays it.\r\nIt renders an input with the property `value`\r\nwhich is editable by the user.",
+    "displayName": "TimeGrainFilter",
+    "methods": [
+      {
+        "name": "handleClick",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "label": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "A label that will be printed when this component is rendered."
+      },
+      "value": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "The value displayed in the input."
+      },
+      "timegrainarray": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "The timegrainarray displayed in the input."
+      },
+      "classes": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "The classes displayed in the component."
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
   }
 }

@@ -3,9 +3,10 @@ module SelectFilter
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "0.0.3"
+const version = "0.0.5"
 
 include("''_selectfilter.jl")
+include("''_timegrainfilter.jl")
 
 function __init__()
     DashBase.register_package(

@@ -196,6 +196,7 @@ class SelectFilter extends Component {
                 fromDate: data.startDate,
                 toDate: data.endDate
             }
+			console.log("Selected Date Range",finalDateData)
 		    this.props.setProps({ value: finalDateData });	
         }
 		else {

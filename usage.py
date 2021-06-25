@@ -12,14 +12,15 @@ app.layout = html.Div([
         value='my-value',
         label='my-label',
         type='custom',
-        startDate='2021-01-22',
+        startDate='2021-01-01',
         endDate='2021-03-21'
     ),
+    select_filter.TimeGrainFilter(id="dayinput",timegrainarray=["1d","7d"]),
     html.Div(id='output')
 ])
 
 
-@app.callback(Output('output', 'children'), [Input('input', 'value')])
+@app.callback(Output('output', 'children'), [Input('dayinput', 'value')])
 def display_output(value):
     return 'You have entered {}'.format(value)
 

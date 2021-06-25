@@ -268,8 +268,6 @@ function formatcustomStartDateAndEndDate(data) {
     var smonth = startDate.getMonth() + 1;
     var syear = startDate.getFullYear();
 	
-	console.log("sdate",sdate)
-	console.log("sdate",smonth)
     if (sdate < 10) {
         sdate = '0' + sdate;
     }
@@ -286,10 +284,6 @@ function formatcustomStartDateAndEndDate(data) {
     if (emonth < 10) {
         emonth = '0' + emonth;
     }
-	
-	console.log("data.startDate",data.startDate)
-	console.log("startDate",startDate)
-	console.log("endDate",endDate)
 	
     return {
         start: monthNames[parseInt(smonth, 10)] + ' ' + sdate,
