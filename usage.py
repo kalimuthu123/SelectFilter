@@ -15,15 +15,18 @@ app.layout = html.Div([
         startDate='2021-01-01',
         endDate='2021-03-21'
     ),
+    select_filter.RadioFilter(id="dayinput123",initialarray=["Instagram", "LinkedIn", "Twitter"]),
     select_filter.TimeGrainFilter(id="dayinput",timegrainarray=["1d","7d"]),
+    select_filter.DateFilter(id="dayinput345"),
     html.Div(id='output')
 ])
 
 
-@app.callback(Output('output', 'children'), [Input('dayinput', 'value')])
+@app.callback(Output('output', 'children'), [Input('dayinput123', 'value')])
 def display_output(value):
     return 'You have entered {}'.format(value)
 
+    #select_filter.DateFilter(id="dayinput123"),
 
 if __name__ == '__main__':
     app.run_server(debug=True)

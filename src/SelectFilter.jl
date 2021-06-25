@@ -5,6 +5,8 @@ using Dash
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
 const version = "0.0.5"
 
+include("''_datefilter.jl")
+include("''_radiofilter.jl")
 include("''_selectfilter.jl")
 include("''_timegrainfilter.jl")
 
