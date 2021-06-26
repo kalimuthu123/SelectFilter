@@ -97,7 +97,7 @@ class RadioFilter extends Component {
       <div className='dropdown-container'>
         <div className='dropdown-trigger'>
           <button onClick={this.toggleDropdown}>
-            dropdown trigger
+            {label}
           </button>
         </div>
         {
