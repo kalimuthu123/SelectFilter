@@ -16,7 +16,7 @@ app.layout = html.Div([
         startDate='2021-01-01',
         endDate='2021-03-21'
     ),
-    select_filter.RadioFilter(id="dayinput123",label="show all trnds",initialarray=["Instagram", "LinkedIn", "Twitter"]),
+    select_filter.RadioFilter(id="dayinput123",label="show all trnds",initialarray=["Demographic", "Message trends", "calllogs"]),
     select_filter.TimeGrainFilter(id="dayinput",timegrainarray=["1d","7d"]),
     select_filter.DateFilter(id="dayinput345"),
     select_filter.CardDropdown(id="dayinput34455",label="show all Filters",children=[

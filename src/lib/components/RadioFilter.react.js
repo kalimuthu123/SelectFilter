@@ -96,8 +96,9 @@ class RadioFilter extends Component {
     return (
       <div className='dropdown-container'>
         <div className='dropdown-trigger'>
-          <button onClick={this.toggleDropdown}>
+          <button className="btn btn-outline-secondary btn-rounded dropdown-toggle" onClick={this.toggleDropdown}>
             {label}
+			<span class="count-symbol bg-danger"></span>
           </button>
         </div>
         {

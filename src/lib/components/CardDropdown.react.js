@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './RadioFilter.css'
+import './CardDropDown.css'
 
 /**
  * ExampleComponent is an example component.
@@ -26,10 +26,8 @@ class CardDropdown extends Component {
 
   renderDropdownMenu(childrenlayout) {
     return (
-      <div className='dropdown-body'>
-        <div>
+      <div className='dropdown-body dropdown-form'>
          {childrenlayout.map((child, index) => (<div key={index}>{child}</div>))}
-        </div>
       </div>
     )
   }
@@ -42,8 +40,10 @@ class CardDropdown extends Component {
     return (
       <div className='dropdown-container'>
         <div className='dropdown-trigger'>
-          <button onClick={this.toggleDropdown}>
+          <button className="btn btn-outline-secondary btn-rounded dropdown-toggle" onClick={this.toggleDropdown}>
+		      <i className="mdi mdi-filter-variant"></i>
 			  {label}
+			  <span className="count-symbol bg-danger"></span>
           </button>
         </div>
         {
@@ -92,3 +92,5 @@ CardDropdown.propTypes = {
      */
     setProps: PropTypes.func
 };
+
+
