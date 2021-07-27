@@ -13,13 +13,18 @@ import './RadioFilter.css'
 // https://baurine.netlify.app/2018/12/09/implement-react-drop-down/
 
 class RadioFilter extends Component {
-  constructor(props) {
-    super(props)
+  
+  constructor() {
+    super();
+
+    // set initial state
     this.state = {
-      dropdownVisible: false,
-	  selections : [],
-    }
+       dropdownVisible: false,
+	   selections : [ ] ,
+	   checkeditem : '',
+    };
   }
+
 
   toggleDropdown = (e) => {
     this.setState(prevState => ({dropdownVisible: !prevState.dropdownVisible}))
@@ -41,36 +46,36 @@ class RadioFilter extends Component {
    //console.log(checked,checkedValue,checkedName)
 
     if (checked) {
-		
-	   /*this.setState(prevState => ({
-            selections: [...prevState.selections, checkedName ]
-       })); */
-       let selections = [...this.state.selections];
-       selections.push(checkedName);
-	   console.log("tempArr",selections)
-       this.setState({selections});
-	    /*this.setState(prevState => ({
-            selections: prevState.selections.concat(new Array([checkedName]))
-        })); */
-	   //this.setState(prevState => ({selections: [...prevState.selections, checkedName ]}))
-	   console.log("checkedselect",this.state.selections)
+	   let temparray = this.state.selections.concat([checkedName])
+	   this.setState({ selections : temparray }, function () {
+            console.log(this.state.selections);
+        });
+	   //console.log("checkedselect", this.state.selections )
     }
-	console.log("filtered1",this.state.selections)
+	else
+	{
+	//console.log("filtered1",this.state.selections)
     const filtered = this.state.selections.filter(name => name !== e.target.name);
-	console.log("filtered",filtered)
+	///console.log("filtered",filtered)
 	this.setState({ selections: filtered });
+	}
 };
+  
+  componentDidUpdate(prevProps, prevState) {
+     //console.log("prevProps",prevProps)
+	 //console.log("prevState",prevState)
+  }
   
   handleSubmit = e => {
     e.preventDefault();
-	console.log(this.state.selections)
+	//console.log(this.state.selections)
 	this.props.setProps({ value : this.state.selections });
   }
 
   renderDropdownMenu(initialarray) {
     return (
       <div className='dropdown-body'>
-	    <form onSubmit={this.handleSubmit} className="form-group">
+	    <form onSubmit={this.handleSubmit} >
 		{ initialarray.map ( data => (
 		                  <div className="form-check form-check-flat form-check-primary ml-3">
 						  <label className="form-check-label font-weight-bold" >
@@ -79,7 +84,7 @@ class RadioFilter extends Component {
                            name={data}
                            value={data}
                            onChange={this.handleChange}
-                           className="m-3 cursor-pointer"
+                           className="form-check-input"
                           />
                           <span>{data} </span>
 						  </label>

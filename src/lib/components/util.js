@@ -22,6 +22,34 @@ function leapYear(year) {
     return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
 }
 
+//Get the date N months before the current date
+ function getPreMonthDay(date,monthNum)
+    {
+        var dateArr = date.split('-');
+        var year = dateArr[0]; //Get the year of the current date
+        var month = dateArr[1]; //Get the month of the current date
+        var day = dateArr[2]; //Get the current date
+        var days = new Date(year, month, 0);
+        days = days.getDate(); //Get the number of days in the month of the current date
+        var year2 = year;
+        var month2 = parseInt(month) - monthNum;
+        if (month2 <=0) {
+            year2 = parseInt(year2) - parseInt(month2 / 12 == 0 ? 1 : parseInt(month2) / 12);
+            month2 = 12 - (Math.abs(month2) % 12);
+        }
+        var day2 = day;
+        var days2 = new Date(year2, month2, 0);
+        days2 = days2.getDate();
+        if (day2 > days2) {
+            day2 = days2;
+        }
+        if (month2 < 10) {
+            month2 = '0' + month2;
+        }
+        var t2 = year2 + '-' + month2 + '-' + day2;
+        return t2;
+ }
+ 
 function getDateForDatePicker(data) {
     var today = new Date();
     var dd = today.getDate();
@@ -200,6 +228,44 @@ function getDateForDatePicker(data) {
                 startDate :  currentMonth.getFullYear() + '-' + (lastmonth) + '-01' ,
                 endDate :  lastDate.getFullYear()  + '-' + (lastmonth) + '-' + (lastDate.getDate())
             }
+			
+		case 'last biannual':
+			
+			var last_biannualdate=getPreMonthDay( yyyy + '-' + mm + '-' + dd , 6 )
+			var dateArr = last_biannualdate.split('-');
+			console.log("last  biannual",dateArr)
+            var year = dateArr[0]; //Get the year of the current date
+            var month = dateArr[1]; //Get the month of the current date
+            var day = dateArr[2];
+			return {
+                start: monthNames[parseInt(month)] + ' 01' + ' ' + year ,
+                end: ' ' + monthNames[parseInt(mm)] + ' ' + day + ' ' + yyyy,
+                startDate :  last_biannualdate ,
+                endDate :  yyyy + '-' + mm + '-' + dd 
+            }
+			
+		case 'last year':
+			 year = parseInt(yyyy) - 1
+		     return {
+                start: monthNames[parseInt(mm)] + ' 01' + ' ' + year,
+                end: ' ' + monthNames[parseInt(mm)] + ' ' + '01' + ' ' + yyyy,
+                startDate :  year + '-' + mm + '-' + dd ,
+                endDate :  yyyy + '-' + mm + '-' + dd 
+            }
+		
+		case 'last quarter':
+		    var last_biannualdate=getPreMonthDay( yyyy + '-' + mm + '-' + dd , 3 )
+			var dateArr = last_biannualdate.split('-');
+			console.log("last quarter",dateArr)
+            var year = dateArr[0]; //Get the year of the current date
+            var month = dateArr[1]; //Get the month of the current date
+            var day = dateArr[2];
+		    return {
+                start: monthNames[parseInt(month)] + ' 01' + ' ' + year,
+                end: ' ' + monthNames[parseInt(mm)] + ' ' + day + ' ' + yyyy,
+                startDate :  last_biannualdate ,
+                endDate :  yyyy + '-' + mm + '-' + dd 
+            }
 
         case 'max':
 
@@ -250,8 +316,8 @@ function formatStartDateAndEndDate(data) {
         emonth = '0' + emonth;
     }
     return {
-        start: monthNames[parseInt(smonth, 10)] + ' ' + sdate,
-        end: monthNames[parseInt(emonth, 10)] + ' ' + edate,
+        start: monthNames[parseInt(smonth, 10)] + ' ' + sdate + ' ' + syear ,
+        end: monthNames[parseInt(emonth, 10)] + ' ' + edate + ' ' + eyear,
         startDate:  syear + '-' + smonth + '-' + (sdate) ,
         endDate:  eyear + '-' + emonth + '-' + (edate) 
     }
@@ -286,8 +352,8 @@ function formatcustomStartDateAndEndDate(data) {
     }
 	
     return {
-        start: monthNames[parseInt(smonth, 10)] + ' ' + sdate,
-        end: monthNames[parseInt(emonth, 10)] + ' ' + edate,
+        start: monthNames[parseInt(smonth, 10)] + ' ' + sdate + ' ' + syear ,
+        end: monthNames[parseInt(emonth, 10)] + ' ' + edate + ' ' + eyear,
         startDate:  syear + '-' + smonth + '-' + (sdate) ,
         endDate:  eyear + '-' + emonth + '-' + (edate) 
     }

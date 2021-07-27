@@ -13,7 +13,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 const styles = theme => ({
     icon: {
@@ -113,11 +113,26 @@ const dateFilterType = [
         text: 'Last Month',
        displayValue: ''
     },
-    {
+	{
+        type: 'last quarter',
+        text: 'Last Quarter',
+        displayValue: ''
+    },
+	{
+        type: 'last biannual',
+        text: 'Last biannual',
+        displayValue: ''
+    },
+	{
+        type: 'last year',
+        text: 'Last Year',
+        displayValue: ''
+    },
+	{
         type: 'custom',
         text: 'Custom Range',
         displayValue: ''
-    }
+    },
     // ,
     // {
     //     type: 'All',
@@ -290,7 +305,7 @@ class SelectFilter extends Component {
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                         <div style={{ float: 'right' }}>
-                            <StyledButton aria-owns={this.state.anchorEl ? 'long-menu' : null} aria-haspopup="true" aria-label="More" onClick={this.handleClick} variant="contained" className={classes.dateButton} style={{ width: 180, padding: '0 5px', boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)' }}>
+                            <StyledButton aria-owns={this.state.anchorEl ? 'long-menu' : null} aria-haspopup="true" aria-label="More" onClick={this.handleClick} variant="contained" className={classes.dateButton} style={{ width: 230, padding: '0 5px', boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)' }}>
                                 <Grid container direction="row" alignItems="stretch" style={{ minWidth: 130, alignItems: 'center', fontFamily: "'Montserrat', sans-serif" }}>
                                     <Grid item xs={9} sm={9} md={9} style={{ display: 'flex' }}>
                                         <p style={{ textAlign: 'left', fontSize: 12, margin: 0, 
@@ -304,7 +319,7 @@ class SelectFilter extends Component {
                                     </Grid>
                                     <Grid item xs={3} sm={3} md={3} style={{ textAlign: 'right', placeContent: 'center', alignItems: 'center', display: 'flex', fontFamily: "'Montserrat', sans-serif" }}>
 										<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                                           <MenuIcon />
+                                           <DateRangeIcon />
                                         </IconButton>
                                     </Grid>
                                 </Grid>

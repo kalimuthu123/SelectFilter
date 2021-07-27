@@ -22,7 +22,7 @@ class TimeGrainFilter extends Component {
     }
 
     componentWillMount() {
-		
+		this.props.setProps({ value : this.props.timegrainarray[0] });
     }
 	
 	handleClick=(e)=>{

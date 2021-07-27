@@ -1,6 +1,6 @@
 {
   "name": "select_filter",
-  "version": "0.0.10",
+  "version": "0.0.16",
   "description": "the selected date filter",
   "main": "build/index.js",
   "scripts": {

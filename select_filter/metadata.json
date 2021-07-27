@@ -74,9 +74,26 @@
     }
   },
   "src/lib/components/DateFilter.react.js": {
-    "description": "ExampleComponent is an example component.\r\nIt takes a property, `label`, and\r\ndisplays it.\r\nIt renders an input with the property `value`\r\nwhich is editable by the user.",
+    "description": "DateFilter is an example component.\r\nIt takes a property, `label`, and\r\ndisplays it.\r\nIt renders an input with the property `value`\r\nwhich is editable by the user.",
     "displayName": "DateFilter",
-    "methods": [],
+    "methods": [
+      {
+        "name": "handleEvent",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          },
+          {
+            "name": "{ startDate, endDate }",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
     "props": {
       "id": {
         "type": {
@@ -106,12 +123,26 @@
         "required": false,
         "description": "The Date displayed in the input."
       },
+      "startDate": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "The startDate of dateformat in the input."
+      },
       "type": {
         "type": {
           "name": "any"
         },
         "required": false,
-        "description": "The type of dateformat in the input."
+        "description": "The startDate of dateformat in the input."
+      },
+      "endDate": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "The startDate of dateformat in the input."
       },
       "classes": {
         "type": {

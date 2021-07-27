@@ -18,7 +18,7 @@ app.layout = html.Div([
     ),
     select_filter.RadioFilter(id="dayinput123",label="show all trnds",initialarray=["Demographic", "Message trends", "calllogs"]),
     select_filter.TimeGrainFilter(id="dayinput",timegrainarray=["1d","7d"]),
-    select_filter.DateFilter(id="dayinput345"),
+    select_filter.DateFilter(id="dayinput345",type="current_month"),
     select_filter.CardDropdown(id="dayinput34455",label="show all Filters",children=[
       dcc.Markdown(
             '''
@@ -55,7 +55,7 @@ quotes, and more.
 ])
 
 
-@app.callback(Output('output', 'children'), [Input('dayinput123', 'value')])
+@app.callback(Output('output', 'children'), [Input('dayinput', 'value')])
 def display_output(value):
     return 'You have entered {}'.format(value)
 
